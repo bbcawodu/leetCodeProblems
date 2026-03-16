@@ -62,3 +62,17 @@ function hasCycle(head: ListNode | null): boolean {
 
     return false;
 };
+
+let list = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4))));
+list.next!.next!.next!.next = list.next;
+
+console.log(hasCycle(list)); // true
+
+list = new ListNode(1, new ListNode(2));
+list.next!.next = list;
+
+console.log(hasCycle(list)); // true
+
+list = new ListNode(1);
+
+console.log(hasCycle(list)); // false
