@@ -35,35 +35,39 @@ class TreeNode {
 }
 
 function averageOfLevels(root: TreeNode | null): number[] {
-    function bfsTreeWithAverages(root: TreeNode | null): number[] {
-        const averages = [];
-        const traversalQueue = [];
-        traversalQueue.push(root);
-
-        while (traversalQueue.length > 0) {
-            let currentLevelTotal = 0;
-            let currentLevelCount = traversalQueue.length;
-
-            for (let i=0; i < currentLevelCount; i++) {
-                const currentNode = traversalQueue.shift() as TreeNode;
-                currentLevelTotal += currentNode.val;
-
-                if (currentNode.left) {
-                    traversalQueue.push(currentNode.left);
-                }
-                if (currentNode.right) {
-                    traversalQueue.push(currentNode.right);
-                }
-            }
-
-            averages.push(currentLevelTotal/currentLevelCount);
-        }
-
-        return averages;
+    if (!root) {
+        return [];
     }
-
+    
     return bfsTreeWithAverages(root);
 };
+
+function bfsTreeWithAverages(root: TreeNode): number[] {
+    const averages = [];
+    const traversalQueue = [];
+    traversalQueue.push(root);
+
+    while (traversalQueue.length > 0) {
+        let currentLevelTotal = 0;
+        let currentLevelCount = traversalQueue.length;
+
+        for (let i=0; i < currentLevelCount; i++) {
+            const currentNode = traversalQueue.shift() as TreeNode;
+            currentLevelTotal += currentNode.val;
+
+            if (currentNode.left) {
+                traversalQueue.push(currentNode.left);
+            }
+            if (currentNode.right) {
+                traversalQueue.push(currentNode.right);
+            }
+        }
+
+        averages.push(currentLevelTotal/currentLevelCount);
+    }
+
+    return averages;
+}
 
 let root = new TreeNode(3);
 root.left = new TreeNode(9);

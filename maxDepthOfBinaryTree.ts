@@ -34,19 +34,19 @@ class TreeNode {
 }
 
 function maxDepth(root: TreeNode | null): number {
-    function dfsTree(start: TreeNode | null, startDepth: number): number {
-        if (start === null) {
-            return startDepth;
-        }
-
-        return Math.max(
-            dfsTree(start.left, startDepth+1),
-            dfsTree(start.right, startDepth+1)
-        );
-    }
-
     return dfsTree(root, 0);
 };
+
+function dfsTree(start: TreeNode | null, startDepth: number): number {
+    if (start === null) {
+        return startDepth;
+    }
+
+    return Math.max(
+        dfsTree(start.left, startDepth+1),
+        dfsTree(start.right, startDepth+1)
+    );
+}
 
 let tree = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
 
