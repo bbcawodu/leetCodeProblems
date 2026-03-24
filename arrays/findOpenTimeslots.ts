@@ -238,8 +238,8 @@ function checkIfOperatoryHasAppointmentDuringTimeslot(
         const appointmentEnd = new Date(appointment.AptDateTime + appointment.Duration);
 
         if (
-            timeslotStart <= appointmentEnd &&
-            timeslotEnd >= appointmentStart
+            timeslotStart < appointmentEnd &&
+            timeslotEnd > appointmentStart
         ) {
             return true;
         }
