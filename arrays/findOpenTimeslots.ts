@@ -123,7 +123,7 @@ const DEFAULT_OPERATORIES: Operatory[] = [
 {"OperatoryNum": 2, "OpenStartHour": 12, "OpenStopHour": 16}
 ]
 
-function findAvailableThirtyMinuteTimeSlots(
+export default function findAvailableThirtyMinuteTimeSlots(
     startTime: number,
     endTime: number,
     appointments: OperatoryAppointment[] = DEFAULT_OPERATORY_APPOINTMENTS,
