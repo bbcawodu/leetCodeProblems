@@ -146,12 +146,12 @@ function buildAvailableTimeslots(
 
     // Round start time up to nearest 30 min interval
     let appointmentStart = new Date(startTime);
-    if (appointmentStart.getMinutes() !== 0 || appointmentStart.getMinutes() !== 30) {
-        if (appointmentStart.getMinutes() < 30) {
-            appointmentStart.setMinutes(30);
+    if (appointmentStart.getUTCMinutes() !== 0 || appointmentStart.getUTCMinutes() !== 30) {
+        if (appointmentStart.getUTCMinutes() < 30) {
+            appointmentStart.setUTCMinutes(30);
         } else {
-            appointmentStart.setHours(appointmentStart.getHours() + 1);
-            appointmentStart.setMinutes(0);
+            appointmentStart.setUTCHours(appointmentStart.getUTCHours() + 1);
+            appointmentStart.setUTCMinutes(0);
         }
     }
 
@@ -213,10 +213,10 @@ function checkIfOperatoryIsOpenDuringTimeslot(
     const timeslotEnd = new Date(timeslot.end);
 
     const operatoryStart = new Date(timeslotStart.getTime());
-    operatoryStart.setHours(operatory.OpenStartHour, 0, 0, 0);
+    operatoryStart.setUTCHours(operatory.OpenStartHour, 0, 0, 0);
 
     const operatoryEnd = new Date(timeslotStart.getTime());
-    operatoryEnd.setHours(operatory.OpenStopHour, 0, 0, 0);
+    operatoryEnd.setUTCHours(operatory.OpenStopHour, 0, 0, 0);
 
     return timeslotStart >= operatoryStart && timeslotEnd <= operatoryEnd;
 }
