@@ -213,10 +213,10 @@ function checkIfOperatoryIsOpenDuringTimeslot(
     const timeslotEnd = new Date(timeslot.end);
 
     const operatoryStart = new Date(timeslotStart.getTime());
-    operatoryStart.setHours(operatory.OpenStartHour);
+    operatoryStart.setHours(operatory.OpenStartHour, 0, 0, 0);
 
     const operatoryEnd = new Date(timeslotStart.getTime());
-    operatoryEnd.setHours(operatory.OpenStopHour);
+    operatoryEnd.setHours(operatory.OpenStopHour, 0, 0, 0);
 
     return timeslotStart >= operatoryStart && timeslotEnd <= operatoryEnd;
 }
@@ -247,9 +247,14 @@ function checkIfOperatoryHasAppointmentDuringTimeslot(
 
 let startTime = 1514782800000;
 let endTime = 1514869200000;
-console.log(findAvailableThirtyMinuteTimeSlots(startTime, endTime).map(interval => {
-    return {
-        start: new Date(interval.start).toISOString(),
-        end: new Date(interval.end).toISOString()
-    }
-}));
+console.log(
+    findAvailableThirtyMinuteTimeSlots(startTime, endTime)
+        .map(
+            interval => {
+                return {
+                    start: new Date(interval.start).toISOString(),
+                    end: new Date(interval.end).toISOString()
+                };
+            }
+        )
+);
