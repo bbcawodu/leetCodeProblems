@@ -230,13 +230,16 @@ function checkIfOperatoryHasAppointmentDuringTimeslot(
     const timeslotEnd = new Date(timeslot.end);
             
     for (const appointment of appointments) {
+        if (operatory.OperatoryNum !== appointment.Op) {
+            continue;
+        }
+        
         const appointmentStart = new Date(appointment.AptDateTime);
         const appointmentEnd = new Date(appointment.AptDateTime + appointment.Duration);
 
         if (
-            operatory.OperatoryNum === appointment.Op &&
-            timeslotStart < appointmentEnd &&
-            timeslotEnd > appointmentStart
+            timeslotStart <= appointmentEnd &&
+            timeslotEnd >= appointmentStart
         ) {
             return true;
         }
