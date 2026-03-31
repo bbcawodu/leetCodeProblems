@@ -65,7 +65,11 @@ class _Node {
 
 
 function cloneGraph(node: _Node | null): _Node | null {
-	if (!node) {
+    return cloneGraphDFS(node);
+};
+
+function cloneGraphBFS(node: _Node | null): _Node | null {
+    if (!node) {
         return null;
     }
 
@@ -88,7 +92,28 @@ function cloneGraph(node: _Node | null): _Node | null {
     }
 
     return clonesMap.get(node);
-};
+}
+
+function cloneGraphDFS(node: _Node | null, clonesMap = new Map()): _Node | null {
+    if (!node) {
+        return null;
+    }
+
+    if (!clonesMap.has(node)) {
+        clonesMap.set(node, new _Node(node.val));
+    }
+
+    for (let neighbor of node.neighbors) {
+        if (!clonesMap.has(neighbor)) {
+            cloneGraphDFS(neighbor, clonesMap);
+        }
+
+        let clonedNode = clonesMap.get(node);
+        clonedNode.neighbors.push(clonesMap.get(neighbor));
+    }
+
+    return clonesMap.get(node);
+}
 
 let node1 = new _Node(1);
 let node2 = new _Node(2);
