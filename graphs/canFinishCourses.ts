@@ -29,6 +29,8 @@ prerequisites[i].length == 2
 All the pairs prerequisites[i] are unique.
  */
 
+import { buildGraph, runKahns } from "./kahns.ts";
+
 function canFinish(numCourses: number, prerequisites: number[][]): boolean {
     const courseGraph = buildGraph(numCourses, prerequisites);
 
@@ -36,54 +38,6 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
 
     return ordering.length === numCourses;
 };
-
-function buildGraph(numCourses: number, prerequisites: number[][]): Record<number, number[]> {
-    const graph: Record<number, number[]> = {};
-
-    for (let i = 0; i < numCourses; i++) {
-        graph[i] = [];
-    }
-
-    for (let [course, prerequisite] of prerequisites) {
-        graph[prerequisite].push(course);
-    }
-
-    return graph;
-}
-
-function runKahns(courseGraph: Record<number, number[]>): number[] {
-    const indegrees: Record<number, number> = {};
-    for (let node in courseGraph) {
-        indegrees[node] = 0;
-    }
-    for (let node in courseGraph) {
-        for (let neighbor of courseGraph[node]) {
-            indegrees[neighbor]++;
-        }
-    }
-
-    const traversalQueue: number[] = [];
-    for (let node in courseGraph) {
-        if (indegrees[node] === 0) {
-            traversalQueue.push(node as unknown as number);
-        }
-    }
-
-    let ordering: number[] = [];
-    while (traversalQueue.length > 0) {
-        let top = traversalQueue.shift();
-        ordering.push(top as unknown as number);
-
-        for (let neighbor of courseGraph[top as unknown as number]) {
-            indegrees[neighbor]--;
-            if (indegrees[neighbor] === 0) {
-                traversalQueue.push(neighbor);
-            }
-        }
-    }
-
-    return ordering;
-}
 
 let numCourses = 2, prerequisites = [[1,0]];
 console.log(canFinish(numCourses, prerequisites)); // true
