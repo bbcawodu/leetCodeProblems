@@ -39,8 +39,11 @@ function wordBreak(s: string, wordDict: string[]): boolean {
         for (let word of wordDict) {
             let start = endIndex - word.length;
             if (
+                // start index is within bounds
                 start >= 0 &&
+                // start index has been calculated as true
                 calculatedEndIndices[start] &&
+                // substring from start to end index the same as the word
                 s.substring(start, endIndex) === word
             ) {
                 calculatedEndIndices[endIndex] = true;
@@ -49,6 +52,8 @@ function wordBreak(s: string, wordDict: string[]): boolean {
         }
     }
 
+    // this will return true if and only if the end index of the string has been calculated as true
+    // meaning the entire string can be segmented into words in the dictionary
     return calculatedEndIndices[s.length];
 }
 
