@@ -50,30 +50,22 @@ function isValid(s: string): boolean {
     const parenthesesStack = [];
 
     for (let char of s) {
-        const lastParentheses = parenthesesStack.length ? parenthesesStack[parenthesesStack.length - 1] : undefined;
-        
-        if (char === ')') {
-            if (lastParentheses === '(') {
-                parenthesesStack.pop();
-            } else {
-                return false;
-            }
-        } else if (char === '}') {
-            if (lastParentheses === '{') {
-                parenthesesStack.pop();
-            } else {
-                return false;
-            }
-        } else if (char === ']') {
-            if (lastParentheses === '[') {
-                parenthesesStack.pop();
-            } else {
-                return false;
-            }
-        }
-
         if (char === '(' || char === '{' || char === '[') {
             parenthesesStack.push(char);
+        }
+
+        if (char === ')' || char === '}' || char === ']') {
+            const lastParentheses = parenthesesStack[parenthesesStack.length - 1];
+
+            if (char === ')' && lastParentheses === '(') {
+                parenthesesStack.pop();
+            } else if (char === '}' && lastParentheses === '{') {
+                parenthesesStack.pop();
+            } else if (char === ']' && lastParentheses === '[') {
+                parenthesesStack.pop();
+            } else {
+                return false;
+            }
         }
     }
 
@@ -82,25 +74,62 @@ function isValid(s: string): boolean {
     }
 
     return true;
-};
+}
 
-let s = "()";
-console.log(isValid(s)); // true
+function isValidParenthesis(s: string): boolean {
+    const parenthesisStack = [];
+    let openParenthesis = new Map([
+        ['(', ')'],
+        ['[', ']'],
+        ['{', '}'],
+    ]);
+    let closedParenthesis = new Map([
+        ['}', '{'],
+        [']', '['],
+        [')', '('],
+    ]);
 
-s = "()[]{}";
-console.log(isValid(s)); // true
+    for (let char of s) {
+        if (openParenthesis.has(char)) {
+            parenthesisStack.push(char);
+        } else if (closedParenthesis.has(char)) {
+            let pairedOpen = parenthesisStack.pop();
+            if (closedParenthesis.get(char) !== pairedOpen) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
-s = "(]";
-console.log(isValid(s)); // false
+    if (parenthesisStack.length > 0) {
+        return false;
+    }
 
-s = "([])";
-console.log(isValid(s)); // true
+    return true;
+}
 
-s = "([)]";
-console.log(isValid(s)); // false
+function test() {
+    let s = "()";
+    console.log(isValid(s)); // true
 
-s = "[";
-console.log(isValid(s)); // false
+    s = "()[]{}";
+    console.log(isValid(s)); // true
 
-s = "]";
-console.log(isValid(s)); // false
+    s = "(]";
+    console.log(isValid(s)); // false
+
+    s = "([])";
+    console.log(isValid(s)); // true
+
+    s = "([)]";
+    console.log(isValid(s)); // false
+
+    s = "[";
+    console.log(isValid(s)); // false
+
+    s = "]";
+    console.log(isValid(s)); // false
+}
+
+test();
