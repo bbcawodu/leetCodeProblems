@@ -45,7 +45,7 @@ class ListNode {
     }
 }
 
-function hasCycle(head: ListNode | null): boolean {
+function hasCycleNSpace(head: ListNode | null): boolean {
     const visitedNodes = new Map();
 
     let currentNode = head;
@@ -61,18 +61,35 @@ function hasCycle(head: ListNode | null): boolean {
     }
 
     return false;
-};
+}
 
-let list = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4))));
-list.next!.next!.next!.next = list.next;
+function hasCycle(head: ListNode | null): boolean {
+    let fast = head;
+    let slow = head;
 
-console.log(hasCycle(list)); // true
+    while (fast !== null && fast.next !== null) {
+        slow = slow?.next ?? null;
+        fast = fast?.next?.next ?? null;
 
-list = new ListNode(1, new ListNode(2));
-list.next!.next = list;
+        if (fast === slow) {
+            return true;
+        }
+    }
 
-console.log(hasCycle(list)); // true
+    return false;
+}
 
-list = new ListNode(1);
+function test() {
+    let list = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4))));
+    list.next!.next!.next!.next = list.next;
+    console.log(hasCycle(list)); // true
 
-console.log(hasCycle(list)); // false
+    list = new ListNode(1, new ListNode(2));
+    list.next!.next = list;
+    console.log(hasCycle(list)); // true
+
+    list = new ListNode(1);
+    console.log(hasCycle(list)); // false
+}
+
+test();
