@@ -139,7 +139,7 @@ function buildLinkedList(numbers: number[]) {
 
     while (numbers[i]) {
         let current = numbers[i] ? new ListNode(numbers[i], null) : null;
-        previous.next = current;
+        previous!.next = current;
         previous = current;
 
         i++;
