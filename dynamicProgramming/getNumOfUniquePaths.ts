@@ -97,7 +97,21 @@ function getUniquePathsRecursive(currentX: number, currentY: number, pathCounts:
 }
 
 function test() {
+    let m = 1, n =1;
+    console.log(uniquePaths(m,n));
+    console.log(uniquePathsRecursive(m,n));
 
+    m = 3, n =7;
+    console.log(uniquePaths(m,n));
+    console.log(uniquePathsRecursive(m,n));
+
+    m = 7, n =3;
+    console.log(uniquePaths(m,n));
+    console.log(uniquePathsRecursive(m,n));
+
+    m = 10, n =9;
+    console.log(uniquePaths(m,n));
+    console.log(uniquePathsRecursive(m,n));
 }
 
 test();
