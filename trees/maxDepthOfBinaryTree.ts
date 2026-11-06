@@ -33,6 +33,32 @@ class TreeNode {
     }
 }
 
+let maxDepthRecursive = (root: TreeNode | null): number => {
+    if (!root) {
+        return 0;
+    }
+
+    const treeStack: [TreeNode, number][] = [];
+    let maxDepthLevel = 1;
+    treeStack.push([root, maxDepthLevel]);
+
+    while (treeStack.length > 0) {
+        let [currentNode, currentPathLength] = treeStack.pop() ?? [];
+        if (currentNode === undefined || currentPathLength === undefined) {break}
+        
+        if (currentNode.left) {
+            treeStack.push([currentNode.left, currentPathLength + 1]);
+        }
+        if (currentNode.right) {
+            treeStack.push([currentNode.right, currentPathLength + 1]);
+        }
+        
+        maxDepthLevel = Math.max(currentPathLength,maxDepthLevel);
+    }
+
+    return maxDepthLevel;
+};
+
 function maxDepth(root: TreeNode | null): number {
     return dfsTree(root, 0);
 };
@@ -48,10 +74,12 @@ function dfsTree(start: TreeNode | null, startDepth: number): number {
     );
 }
 
-let tree = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+let test = () => {
+    let tree = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+    console.log(maxDepth(tree)); // 3
 
-console.log(maxDepth(tree)); // 3
+    tree = new TreeNode(1, null, new TreeNode(2));
+    console.log(maxDepth(tree)); // 2
+}
 
-tree = new TreeNode(1, null, new TreeNode(2));
-
-console.log(maxDepth(tree)); // 2
+test();
