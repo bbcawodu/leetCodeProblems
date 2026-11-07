@@ -30,20 +30,50 @@ let minDepth = (root: TreeNode | null): number => {
         return 0;
     }
 
-    return findMinDepthRecursively(root, 1);
+    return findMinDepthBFS(root);
 };
 
-let findMinDepthRecursively = (root: TreeNode | null, currentDepth: number): number => {
+const findMinDepthBFS = (root: TreeNode | null): number => {
+    if (!root) {
+        return 0;
+    }
+
+    let minDepth = 1;
+    const treeQueue: [TreeNode, number][] = [[root, minDepth]];
+
+    while (treeQueue.length > 0) {
+        const currentContext = treeQueue.shift();
+        if (!currentContext) {continue;};
+        const [currentNode, currentDepth] = currentContext;
+
+        if (!currentNode.left && !currentNode.right) {
+            return currentDepth;
+        }
+
+        if (currentNode.left) {
+            treeQueue.push([currentNode.left, currentDepth + 1]);
+        }
+        if (currentNode.right) {
+            treeQueue.push([currentNode.right, currentDepth + 1]);
+        }
+
+        minDepth = currentDepth;
+    }
+
+    return minDepth;
+}
+
+let findMinDepthDFSRecursively = (root: TreeNode | null, currentDepth: number): number => {
     if (!root) {
         return currentDepth;
     }
 
     const paths = [];
     if (root.left) {
-        paths.push(findMinDepthRecursively(root.left, currentDepth + 1));
+        paths.push(findMinDepthDFSRecursively(root.left, currentDepth + 1));
     }
     if (root.right) {
-        paths.push(findMinDepthRecursively(root.right, currentDepth + 1));
+        paths.push(findMinDepthDFSRecursively(root.right, currentDepth + 1));
     }
 
     return paths.length > 0 ?
