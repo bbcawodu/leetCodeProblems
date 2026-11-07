@@ -21,19 +21,9 @@ Constraints:
 The number of nodes in the tree is in the range [0, 104].
 -100 <= Node.val <= 100
  */
+import { TreeNode, printTree } from "./core/tree.ts";
 
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.left = (left===undefined ? null : left)
-        this.right = (right===undefined ? null : right)
-    }
-}
-
-let maxDepthRecursive = (root: TreeNode | null): number => {
+let maxDepthIterative = (root: TreeNode | null): number => {
     if (!root) {
         return 0;
     }
@@ -75,10 +65,46 @@ function dfsTree(start: TreeNode | null, startDepth: number): number {
 }
 
 let test = () => {
+    let root = new TreeNode(3);
+    root.left = new TreeNode(9);
+    root.right = new TreeNode(20);
+    root.right.left = new TreeNode(15);
+    root.right.right = new TreeNode(7);
+    printTree(root);
+    console.log(maxDepth(root));
+
+    root = new TreeNode(3);
+    root.left = new TreeNode(1);
+    root.right = new TreeNode(5);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(2);
+    root.right.left = new TreeNode(4);
+    root.right.right = new TreeNode(6);
+    printTree(root);
+    console.log(maxDepth(root));
+
+    root = new TreeNode(1, null, new TreeNode(2));
+    printTree(root);
+    console.log(maxDepth(root));
+
+    root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+    printTree(root);
+    console.log(maxDepth(root));
+
+    root = new TreeNode(1);
+    root.left = new TreeNode(0);
+    root.right = new TreeNode(48);
+    root.right.left = new TreeNode(12);
+    root.right.right = new TreeNode(49);
+    printTree(root);
+    console.log(maxDepth(root));
+
     let tree = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+    printTree(tree);
     console.log(maxDepth(tree)); // 3
 
     tree = new TreeNode(1, null, new TreeNode(2));
+    printTree(tree);
     console.log(maxDepth(tree)); // 2
 }
 

@@ -21,18 +21,7 @@ Constraints:
 The number of nodes in the tree is in the range [1, 104].
 -231 <= Node.val <= 231 - 1
  */
-
-
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.left = (left===undefined ? null : left)
-        this.right = (right===undefined ? null : right)
-    }
-}
+import { TreeNode, printTree } from "./core/tree.ts";
 
 function averageOfLevels(root: TreeNode | null): number[] {
     if (!root) {
@@ -69,20 +58,58 @@ function bfsTreeWithAverages(root: TreeNode): number[] {
     return averages;
 }
 
-let root = new TreeNode(3);
-root.left = new TreeNode(9);
-root.right = new TreeNode(20);
-root.right.left = new TreeNode(15);
-root.right.right = new TreeNode(7);
+function test() {
+    let root = new TreeNode(3);
+    root.left = new TreeNode(9);
+    root.right = new TreeNode(20);
+    root.right.left = new TreeNode(15);
+    root.right.right = new TreeNode(7);
+    printTree(root);
+    console.log(averageOfLevels(root));
 
-console.log(averageOfLevels(root)); // expected output: [3.00000,14.50000,11.00000]
+    root = new TreeNode(3);
+    root.left = new TreeNode(1);
+    root.right = new TreeNode(5);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(2);
+    root.right.left = new TreeNode(4);
+    root.right.right = new TreeNode(6);
+    printTree(root);
+    console.log(averageOfLevels(root));
 
-root = new TreeNode(3);
-root.left = new TreeNode(1);
-root.right = new TreeNode(5);
-root.left.left = new TreeNode(0);
-root.left.right = new TreeNode(2);
-root.right.left = new TreeNode(4);
-root.right.right = new TreeNode(6);
+    root = new TreeNode(1, null, new TreeNode(2));
+    printTree(root);
+    console.log(averageOfLevels(root));
 
-console.log(averageOfLevels(root)); // expected output: [3.00000, 3.00000, 3.00000]
+    root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+    printTree(root);
+    console.log(averageOfLevels(root));
+
+    root = new TreeNode(1);
+    root.left = new TreeNode(0);
+    root.right = new TreeNode(48);
+    root.right.left = new TreeNode(12);
+    root.right.right = new TreeNode(49);
+    printTree(root);
+    console.log(averageOfLevels(root));
+
+    root = new TreeNode(3);
+    root.left = new TreeNode(9);
+    root.right = new TreeNode(20);
+    root.right.left = new TreeNode(15);
+    root.right.right = new TreeNode(7);
+    printTree(root);
+    console.log(averageOfLevels(root)); // expected output: [3.00000,14.50000,11.00000]
+
+    root = new TreeNode(3);
+    root.left = new TreeNode(1);
+    root.right = new TreeNode(5);
+    root.left.left = new TreeNode(0);
+    root.left.right = new TreeNode(2);
+    root.right.left = new TreeNode(4);
+    root.right.right = new TreeNode(6);
+    printTree(root);
+    console.log(averageOfLevels(root)); // expected output: [3.00000, 3.00000, 3.00000]
+}
+
+test();

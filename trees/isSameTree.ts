@@ -21,17 +21,7 @@ Example 3:
 Input: p = [1,2,1], q = [1,1,2]
 Output: false
  */
-
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.left = (left===undefined ? null : left)
-        this.right = (right===undefined ? null : right)
-    }
-}
+import { TreeNode, printTree } from "./core/tree.ts";
 
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
     if (p === null && q === null) {
@@ -58,16 +48,26 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
 
     // return true if above dont fail
     return true;
-};
+}
 
-let p = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-let q = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-console.log(isSameTree(p, q)); // true
+function test() {
+    let p = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+    let q = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+    printTree(p);
+    printTree(q);
+    console.log(isSameTree(p, q)); // true
 
-p = new TreeNode(1, new TreeNode(2), null);
-q = new TreeNode(1, null, new TreeNode(2));
-console.log(isSameTree(p, q)); // false
+    p = new TreeNode(1, new TreeNode(2), null);
+    q = new TreeNode(1, null, new TreeNode(2));
+    printTree(p);
+    printTree(q);
+    console.log(isSameTree(p, q)); // false
 
-p = new TreeNode(1, new TreeNode(2), new TreeNode(1));
-q = new TreeNode(1, new TreeNode(1), new TreeNode(2));
-console.log(isSameTree(p, q)); // false
+    p = new TreeNode(1, new TreeNode(2), new TreeNode(1));
+    q = new TreeNode(1, new TreeNode(1), new TreeNode(2));
+    printTree(p);
+    printTree(q);
+    console.log(isSameTree(p, q)); // false
+}
+
+test();
