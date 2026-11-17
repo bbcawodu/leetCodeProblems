@@ -44,7 +44,7 @@ s does not contain any leading or trailing spaces.
 All the words in s are separated by a single space.
  */
 
-function wordPattern(pattern: string, s: string): boolean {
+export const wordPattern = (pattern: string, s: string): boolean => {
     let stringWords = s.split(" ");
     if (stringWords.length !== pattern.length) {
         return false;
@@ -76,19 +76,4 @@ function wordPattern(pattern: string, s: string): boolean {
     }
 
     return true;
-}
-
-let pattern = "abba", s = "dog cat cat dog";
-console.log(wordPattern(pattern, s)); // true
-
-pattern = "abba", s = "dog cat cat fish";
-console.log(wordPattern(pattern, s)); // false
-
-pattern = "aaaa", s = "dog cat cat dog";
-console.log(wordPattern(pattern, s)); // false
-
-pattern = "abc", s = "b c a";
-console.log(wordPattern(pattern, s)); // true
-
-pattern = "abba", s = "dog dog dog dog";
-console.log(wordPattern(pattern, s)); // false
+};

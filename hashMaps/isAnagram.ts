@@ -26,7 +26,7 @@ s and t consist of lowercase English letters.
 Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
  */
 
-function isAnagram(s: string, t: string): boolean {
+export const isAnagram = (s: string, t: string): boolean => {
     if (s.length !== t.length) {
         return false;
     }
@@ -56,12 +56,3 @@ function isAnagram(s: string, t: string): boolean {
 
     return true;
 };
-
-let s = "anagram", t = "nagaram";
-console.log(isAnagram(s, t)); // true
-
-s = "rat", t = "car";
-console.log(isAnagram(s, t)); // false
-
-s = "aacc", t = "ccac";
-console.log(isAnagram(s, t)); // false
