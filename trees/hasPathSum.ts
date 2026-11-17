@@ -34,13 +34,13 @@ The number of nodes in the tree is in the range [0, 5000].
 -1000 <= targetSum <= 1000
 */
 
-import { TreeNode, printTree } from "./core/tree.ts";
+import { TreeNode } from "./core/tree.ts";
 
-const hasPathSum = (root: TreeNode | null, targetSum: number): boolean => {
+export const hasPathSum = (root: TreeNode | null, targetSum: number): boolean => {
     return hasPathSumDFSIterative(root, targetSum);
 }
 
-const hasPathSumDFSIterative = (
+export const hasPathSumDFSIterative = (
     root: TreeNode | null,
     targetSum: number
 ): boolean => {
@@ -71,7 +71,7 @@ const hasPathSumDFSIterative = (
     return false;
 };
 
-const hasPathSumBFS = (root: TreeNode | null, targetSum: number): boolean => {
+export const hasPathSumBFS = (root: TreeNode | null, targetSum: number): boolean => {
     if (!root) {
         return false;
     }
@@ -100,7 +100,7 @@ const hasPathSumBFS = (root: TreeNode | null, targetSum: number): boolean => {
     return false;
 };
 
-const hasPathSumDFSRecursive = (
+export const hasPathSumDFSRecursive = (
     root: TreeNode | null,
     currentSum: number,
     targetSum: number
@@ -124,41 +124,3 @@ const hasPathSumDFSRecursive = (
 
     return false;
 };
-
-function test() {
-    let root = new TreeNode(3);
-    root.left = new TreeNode(9);
-    root.right = new TreeNode(20);
-    root.right.left = new TreeNode(15);
-    root.right.right = new TreeNode(7);
-    printTree(root);
-    console.log(hasPathSum(root, 89732));
-
-    root = new TreeNode(3);
-    root.left = new TreeNode(1);
-    root.right = new TreeNode(5);
-    root.left.left = new TreeNode(0);
-    root.left.right = new TreeNode(2);
-    root.right.left = new TreeNode(4);
-    root.right.right = new TreeNode(6);
-    printTree(root);
-    console.log(hasPathSum(root, 14));
-
-    root = new TreeNode(1, null, new TreeNode(2));
-    printTree(root);
-    console.log(hasPathSum(root, 1));
-
-    root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
-    printTree(root);
-    console.log(hasPathSum(root, 844));
-
-    root = new TreeNode(1);
-    root.left = new TreeNode(0);
-    root.right = new TreeNode(48);
-    root.right.left = new TreeNode(12);
-    root.right.right = new TreeNode(49);
-    printTree(root);
-    console.log(hasPathSum(root, 61));
-}
-
-test();

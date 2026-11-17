@@ -23,9 +23,9 @@ Constraints:
 The number of nodes in the tree is in the range [0, 105].
 -1000 <= Node.val <= 1000
 */
-import { TreeNode, printTree } from "./core/tree.ts";
+import { TreeNode } from "./core/tree.ts";
 
-let minDepth = (root: TreeNode | null): number => {
+export const getMinDepth = (root: TreeNode | null): number => {
     if (!root) {
         return 0;
     }
@@ -33,7 +33,7 @@ let minDepth = (root: TreeNode | null): number => {
     return findMinDepthBFS(root);
 };
 
-const findMinDepthBFS = (root: TreeNode | null): number => {
+export const findMinDepthBFS = (root: TreeNode | null): number => {
     if (!root) {
         return 0;
     }
@@ -61,9 +61,9 @@ const findMinDepthBFS = (root: TreeNode | null): number => {
     }
 
     return minDepth;
-}
+};
 
-let findMinDepthDFSRecursively = (root: TreeNode | null, currentDepth: number): number => {
+export let findMinDepthDFSRecursively = (root: TreeNode | null, currentDepth: number): number => {
     if (!root) {
         return currentDepth;
     }
@@ -79,42 +79,4 @@ let findMinDepthDFSRecursively = (root: TreeNode | null, currentDepth: number): 
     return paths.length > 0 ?
         Math.min(...paths) :
         currentDepth;
-}
-
-function test() {
-    let root = new TreeNode(3);
-    root.left = new TreeNode(9);
-    root.right = new TreeNode(20);
-    root.right.left = new TreeNode(15);
-    root.right.right = new TreeNode(7);
-    printTree(root);
-    console.log(minDepth(root));
-
-    root = new TreeNode(3);
-    root.left = new TreeNode(1);
-    root.right = new TreeNode(5);
-    root.left.left = new TreeNode(0);
-    root.left.right = new TreeNode(2);
-    root.right.left = new TreeNode(4);
-    root.right.right = new TreeNode(6);
-    printTree(root);
-    console.log(minDepth(root));
-
-    root = new TreeNode(1, null, new TreeNode(2));
-    printTree(root);
-    console.log(minDepth(root));
-
-    root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
-    printTree(root);
-    console.log(minDepth(root));
-
-    root = new TreeNode(1);
-    root.left = new TreeNode(0);
-    root.right = new TreeNode(48);
-    root.right.left = new TreeNode(12);
-    root.right.right = new TreeNode(49);
-    printTree(root);
-    console.log(minDepth(root));
-}
-
-test();
+};

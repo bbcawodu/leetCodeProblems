@@ -23,9 +23,9 @@ Input: root1 = [1,2,3], root2 = [1,3,2]
 Output: false 
 */
 
-import { TreeNode, printTree } from "./core/tree.ts";
+import { TreeNode } from "./core/tree.ts";
 
-const leafSimilar = (root1: TreeNode | null, root2: TreeNode | null): boolean => {
+export const areTreesLeafSimilar = (root1: TreeNode | null, root2: TreeNode | null): boolean => {
     let leaves1: TreeNode[] = [];
     getLeafNodes(root1, leaves1);
     let leaves2: TreeNode[] = [];
@@ -63,31 +63,3 @@ const getLeafNodes = (root: TreeNode | null, leaves: TreeNode[]): void => {
 
     return;
 };
-
-const test = () => {
-    let p = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-    let q = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-    printTree(p);
-    printTree(q);
-    console.log(leafSimilar(p, q)); // true
-
-    p = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-    q = new TreeNode(1, new TreeNode(3), new TreeNode(2));
-    printTree(p);
-    printTree(q);
-    console.log(leafSimilar(p, q)); // false
-
-    p = new TreeNode(1, new TreeNode(2), null);
-    q = new TreeNode(1, null, new TreeNode(2));
-    printTree(p);
-    printTree(q);
-    console.log(leafSimilar(p, q)); // true
-
-    p = new TreeNode(1, new TreeNode(2), new TreeNode(1));
-    q = new TreeNode(1, new TreeNode(1), new TreeNode(2));
-    printTree(p);
-    printTree(q);
-    console.log(leafSimilar(p, q)); // false
-}
-
-test();

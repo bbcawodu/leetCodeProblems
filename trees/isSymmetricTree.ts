@@ -23,9 +23,9 @@ The number of nodes in the tree is in the range [1, 1000].
 
 Follow up: Could you solve it both recursively and iteratively?
 */
-import { TreeNode, printTree } from "./core/tree.ts";
+import { TreeNode } from "./core/tree.ts";
 
-let isSymmetric = (root: TreeNode | null): boolean => {
+export const isSymmetric = (root: TreeNode | null): boolean => {
     if (!root) {
         return true;
     }
@@ -54,15 +54,15 @@ let isSymmetric = (root: TreeNode | null): boolean => {
     return true;
 };
 
-function isSymmetricDFS(root: TreeNode | null): boolean {
+export const isSymmetricDFS = (root: TreeNode | null): boolean => {
     if (!root) {
         return true;
     }
     
     return isSymmetricRecursive(root.left, root.right);
-}
+};
 
-const isSymmetricRecursive = (
+export const isSymmetricRecursive = (
     root: TreeNode | null,
     mirror: TreeNode | null
 ): boolean => {
@@ -78,42 +78,4 @@ const isSymmetricRecursive = (
         isSymmetricRecursive(root?.left ?? null, mirror?.right ?? null) &&
         isSymmetricRecursive(root?.right ?? null, mirror?.left ?? null)
     );
-}
-
-function test() {
-    let root = new TreeNode(3);
-    root.left = new TreeNode(9);
-    root.right = new TreeNode(20);
-    root.right.left = new TreeNode(15);
-    root.right.right = new TreeNode(7);
-    printTree(root);
-    console.log(isSymmetric(root));
-
-    root = new TreeNode(3);
-    root.left = new TreeNode(1);
-    root.right = new TreeNode(5);
-    root.left.left = new TreeNode(0);
-    root.left.right = new TreeNode(2);
-    root.right.left = new TreeNode(4);
-    root.right.right = new TreeNode(6);
-    printTree(root);
-    console.log(isSymmetric(root));
-
-    root = new TreeNode(1, new TreeNode(2), new TreeNode(2));
-    printTree(root);
-    console.log(isSymmetric(root));
-
-    root = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
-    printTree(root);
-    console.log(isSymmetric(root));
-
-    root = new TreeNode(1);
-    root.left = new TreeNode(0);
-    root.right = new TreeNode(48);
-    root.right.left = new TreeNode(12);
-    root.right.right = new TreeNode(49);
-    printTree(root);
-    console.log(isSymmetric(root));
-}
-
-test();
+};
