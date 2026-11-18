@@ -26,7 +26,7 @@ Constraints:
 0 <= prices[i] <= 104
  */
 
-function maxProfit(prices: number[]): number {
+export const maxProfit = (prices: number[]): number => {
     let currentMaxProfit = 0;
     let startDay = 0;
     let endDay = 1;
@@ -46,15 +46,3 @@ function maxProfit(prices: number[]): number {
 
     return currentMaxProfit;
 };
-
-let prices = [7,1,5,3,6,4];
-console.log(maxProfit(prices)); // 5
-
-prices = [7,6,4,3,1];
-console.log(maxProfit(prices)); // 0
-
-prices = [1,2,3,4,5];
-console.log(maxProfit(prices)); // 4
-
-prices = [5,4,3,2,1,7];
-console.log(maxProfit(prices)); // 6

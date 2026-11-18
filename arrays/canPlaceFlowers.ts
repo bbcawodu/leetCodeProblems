@@ -23,7 +23,7 @@ There are no two adjacent flowers in flowerbed.
 0 <= n <= flowerbed.length
 */
 
-const canPlaceFlowers = (flowerbed: number[], n: number): boolean => {
+export const canPlaceFlowers = (flowerbed: number[], n: number): boolean => {
     let currentFlowerCount = 0;
     let isPreviousPlotFlowers = false;
 
@@ -46,19 +46,3 @@ const canPlaceFlowers = (flowerbed: number[], n: number): boolean => {
 
     return currentFlowerCount >= n;
 };
-
-const test = () => {
-    let flowerbed: number[] = [1, 0, 0, 0, 1];
-    let n: number = 1;
-    console.log(canPlaceFlowers(flowerbed, n));
-
-    flowerbed = [1, 0, 0, 0, 1];
-    n = 2;
-    console.log(canPlaceFlowers(flowerbed, n));
-    
-    flowerbed = [1,0,0,0,0,1];
-    n = 2;
-    console.log(canPlaceFlowers(flowerbed, n));
-};
-
-test();

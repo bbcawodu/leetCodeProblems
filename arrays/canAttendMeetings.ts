@@ -21,7 +21,7 @@ true
 Explanation: There are no overlapping meetings, so the person can attend all.
  */
 
-function canAttendMeetings(intervals: number[][]): boolean {
+export const canAttendMeetings = (intervals: number[][]): boolean => {
     if (intervals.length < 2) {
         return true;
     }
@@ -39,18 +39,4 @@ function canAttendMeetings(intervals: number[][]): boolean {
     }
 
     return true;
-}
-
-function test() {
-    let intervals = [[0,30],[5,10],[15,20]];
-    console.log(canAttendMeetings(intervals));
-
-    intervals = [[1,2],[2,3],[3,4]];
-    console.log(canAttendMeetings(intervals));
-
-    intervals = [[10,20],[20,30],[30,40]];
-    console.log(canAttendMeetings(intervals));
-
-    intervals = [[1,2],[1,3]];
-    console.log(canAttendMeetings(intervals));
-}
+};
