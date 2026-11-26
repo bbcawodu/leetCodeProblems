@@ -36,16 +36,9 @@ pos is -1 or a valid index in the linked-list.
 Follow up: Can you solve it using O(1) (i.e. constant) memory?
  */
 
-class ListNode {
-    val: number
-    next: ListNode | null
-    constructor(val?: number, next?: ListNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
-    }
-}
+import { ListNode } from "./core/ListNode";
 
-function hasCycleNSpace(head: ListNode | null): boolean {
+export const hasCycleNSpace = (head: ListNode | null): boolean => {
     const visitedNodes = new Map();
 
     let currentNode = head;
@@ -63,7 +56,7 @@ function hasCycleNSpace(head: ListNode | null): boolean {
     return false;
 }
 
-function hasCycle(head: ListNode | null): boolean {
+export const hasCycleConstantSpace = (head: ListNode | null): boolean => {
     let fast = head;
     let slow = head;
 
@@ -82,14 +75,14 @@ function hasCycle(head: ListNode | null): boolean {
 function test() {
     let list = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4))));
     list.next!.next!.next!.next = list.next;
-    console.log(hasCycle(list)); // true
+    console.log(hasCycleConstantSpace(list)); // true
 
     list = new ListNode(1, new ListNode(2));
     list.next!.next = list;
-    console.log(hasCycle(list)); // true
+    console.log(hasCycleConstantSpace(list)); // true
 
     list = new ListNode(1);
-    console.log(hasCycle(list)); // false
+    console.log(hasCycleConstantSpace(list)); // false
 }
 
 test();

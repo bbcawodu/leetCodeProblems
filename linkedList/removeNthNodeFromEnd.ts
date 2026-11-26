@@ -43,15 +43,7 @@ head
 Explanation: The 5th to last node is the head node, so it is removed.
 */
 
-class ListNode {
-    val: number;
-    next: ListNode | null;
-
-    constructor(val: number, next: ListNode | null) {
-        this.val = val;
-        this.next = next
-    }
-}
+import { buildLinkedList, ListNode, printNodes } from "./core/ListNode";
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
     let listLength = 0;
@@ -115,34 +107,6 @@ function test() {
     printNodes(head);
     head = removeNthFromEnd(head, n);
     printNodes(head);
-}
-
-function buildLinkedList(numbers: number[]) {
-    let head = numbers[0] ? new ListNode(numbers[0], null) : null;
-    let previous = head;
-    let i = 1;
-
-    while (numbers[i]) {
-        let current = numbers[i] ? new ListNode(numbers[i], null) : null;
-        previous.next = current;
-        previous = current;
-
-        i++;
-    }
-
-    return head;
-}
-
-function printNodes(head: ListNode | null) {
-    let current = head;
-    let nodes = [];
-
-    while (current) {
-        nodes.push(current.val);
-        current = current.next;
-    }
-
-    console.log(`Nodes: ${nodes}`);
 }
 
 test();

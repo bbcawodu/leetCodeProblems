@@ -28,14 +28,7 @@ The number of nodes in the list is the range [0, 5000].
 Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
 
-class ListNode {
-    val: number
-    next: ListNode | null
-    constructor(val?: number, next?: ListNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
-    }
-}
+import { ListNode, printNodes } from "./core/ListNode";
 
 function reverseList(head: ListNode | null): ListNode | null {
     let previous = null;
@@ -51,17 +44,6 @@ function reverseList(head: ListNode | null): ListNode | null {
     return previous;
 }
 
-
-function printLinkedList(head: ListNode | null): void {
-    let currentNode = head;
-    const values: number[] = [];
-    while (currentNode) {
-        values.push(currentNode.val);
-        currentNode = currentNode.next;
-    }
-    console.log(values);
-}
-
 function test() {
     let l1 = new ListNode(
         2,
@@ -70,7 +52,7 @@ function test() {
             new ListNode(3)
         )
     );
-    printLinkedList(reverseList(l1));
+    printNodes(reverseList(l1));
 
     l1 = new ListNode(
         5,
@@ -79,10 +61,10 @@ function test() {
             new ListNode(4)
         )
     );
-    printLinkedList(reverseList(l1));
+    printNodes(reverseList(l1));
 
     l1 = new ListNode(0);
-    printLinkedList(reverseList(l1));
+    printNodes(reverseList(l1));
 
     l1 = new ListNode(
         9,
@@ -103,7 +85,7 @@ function test() {
             )
         )
     );
-    printLinkedList(reverseList(l1));
+    printNodes(reverseList(l1));
 
     l1 = new ListNode(
         9,
@@ -117,7 +99,7 @@ function test() {
             )
         )
     );
-    printLinkedList(reverseList(l1));
+    printNodes(reverseList(l1));
 }
 
 test();

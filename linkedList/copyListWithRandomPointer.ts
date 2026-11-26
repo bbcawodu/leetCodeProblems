@@ -40,29 +40,18 @@ Constraints:
 Node.random is null or is pointing to some node in the linked list.
  */
 
-class _Node {
-    val: number
-    next: _Node | null
-    random: _Node | null
+import { printRandomNodeList, RandomListNode } from "./core/ListNode";
 
-    constructor(val?: number, next?: _Node, random?: _Node) {
-        this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
-        this.random = (random===undefined ? null : random)
-    }
-}
-
-
-function copyRandomList(head: _Node | null): _Node | null {
+function copyRandomList(head: RandomListNode | null): RandomListNode | null {
     if (head === null) {
         return null;
     }
 
     const copies = new Map();
 
-    let currentNode: _Node | null = head;
+    let currentNode: RandomListNode | null = head;
     while (currentNode !== null) {
-        copies.set(currentNode, new _Node(currentNode.val));
+        copies.set(currentNode, new RandomListNode(currentNode.val));
         currentNode = currentNode.next;
     }
 
@@ -82,20 +71,12 @@ function copyRandomList(head: _Node | null): _Node | null {
     return copies.get(head);
 }
 
-function printList(head: _Node | null): void {
-    let currentNode: _Node | null = head;
-    while (currentNode !== null) {
-        console.log(`Node value: ${currentNode.val}, Random points to: ${currentNode.random ? currentNode.random.val : 'null'}`);
-        currentNode = currentNode.next;
-    }
-}
-
 // Example usage:
-const node1 = new _Node(7);
-const node2 = new _Node(13);
-const node3 = new _Node(11);
-const node4 = new _Node(10);
-const node5 = new _Node(3);
+const node1 = new RandomListNode(7);
+const node2 = new RandomListNode(13);
+const node3 = new RandomListNode(11);
+const node4 = new RandomListNode(10);
+const node5 = new RandomListNode(3);
 
 node1.next = node2;
 node2.next = node3;
@@ -109,17 +90,17 @@ node4.random = node3;
 node5.random = node1;
 
 const copiedListHead = copyRandomList(node1);
-printList(copiedListHead);
+printRandomNodeList(copiedListHead);
 
 const copiedListHead2 = copyRandomList(null);
-printList(copiedListHead2);
+printRandomNodeList(copiedListHead2);
 
-const nodeA = new _Node(1);
-const nodeB = new _Node(2);
+const nodeA = new RandomListNode(1);
+const nodeB = new RandomListNode(2);
 
 nodeA.next = nodeB;
 nodeA.random = nodeB;
 nodeB.random = nodeB;
 
 const copiedListHead3 = copyRandomList(nodeA);
-printList(copiedListHead3);
+printRandomNodeList(copiedListHead3);

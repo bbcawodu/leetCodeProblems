@@ -29,14 +29,7 @@ The number of nodes in both lists is in the range [0, 50].
 Both list1 and list2 are sorted in non-decreasing order.
  */
 
-class ListNode {
-    val: number
-    next: ListNode | null
-    constructor(val?: number, next?: ListNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
-    }
-}
+import { ListNode, printNodes } from "./core/ListNode";
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
     const dummyHead = new ListNode();
@@ -69,32 +62,22 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
     return dummyHead.next;
 };
 
-function printList(head: ListNode | null): void {
-    const values: number[] = [];
-    let currentNode = head;
-    while (currentNode !== null) {
-        values.push(currentNode.val);
-        currentNode = currentNode.next;
-    }
-    console.log(values);
-}
-
 let list1: ListNode | null = new ListNode(1, new ListNode(2, new ListNode(4)));
 let list2: ListNode | null = new ListNode(1, new ListNode(3, new ListNode(4)));
 let mergedList: ListNode | null = mergeTwoLists(list1, list2);
-printList(mergedList);
+printNodes(mergedList);
 
 list1 = null;
 list2 = null;
 mergedList = mergeTwoLists(list1, list2);
-printList(mergedList);
+printNodes(mergedList);
 
 list1 = null;
 list2 = new ListNode(0);
 mergedList = mergeTwoLists(list1, list2);
-printList(mergedList);
+printNodes(mergedList);
 
 list1 = new ListNode(5);
 list2 = new ListNode(1, new ListNode(2, new ListNode(4)));
 mergedList = mergeTwoLists(list1, list2);
-printList(mergedList);
+printNodes(mergedList);

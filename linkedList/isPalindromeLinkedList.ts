@@ -35,15 +35,7 @@ left-to-right:  5 -> 4 -> 3
 right-to-left: 3 -> 4 -> 5
 */
 
-class ListNode {
-    val: number;
-    next: ListNode | null;
-
-    constructor(val: number, next: ListNode | null) {
-        this.val = val;
-        this.next = next
-    }
-}
+import { buildLinkedList, ListNode } from "./core/ListNode";
 
 function isPalindrome(head: ListNode | null): boolean {
         // palindrome must be the same when read forward or backwards. read forwards and backwards one node at a time, return false if any inequalities. No false means it is palindrome
@@ -91,22 +83,6 @@ function test() {
     numbers = [1,2,3,4,9,2,1];
     head = buildLinkedList(numbers);
     console.log(isPalindrome(head));
-}
-
-function buildLinkedList(numbers: number[]) {
-    let head = numbers[0] ? new ListNode(numbers[0], null) : null;
-    let previous = head;
-    let i = 1;
-
-    while (numbers[i]) {
-        let current = numbers[i] ? new ListNode(numbers[i], null) : null;
-        previous.next = current;
-        previous = current;
-
-        i++;
-    }
-
-    return head;
 }
 
 test();

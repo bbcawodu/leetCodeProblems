@@ -39,15 +39,7 @@ head
 Explanation: 1 and 2 are swapped, 3 and 4 are swapped.
 */
 
-class ListNode {
-    val: number;
-    next: ListNode | null;
-
-    constructor(val: number, next: ListNode | null) {
-        this.val = val;
-        this.next = next
-    }
-}
+import { buildLinkedList, ListNode, printNodes } from "./core/ListNode";
 
 function swapPairs(head: ListNode | null | undefined): ListNode | null {
     if (!head || !head.next) {
@@ -108,34 +100,6 @@ function test() {
     printNodes(head);
     head = swapPairs(head);
     printNodes(head);
-}
-
-function buildLinkedList(numbers: number[]) {
-    let head = numbers[0] ? new ListNode(numbers[0], null) : null;
-    let previous = head;
-    let i = 1;
-
-    while (numbers[i]) {
-        let current = numbers[i] ? new ListNode(numbers[i], null) : null;
-        previous!.next = current;
-        previous = current;
-
-        i++;
-    }
-
-    return head;
-}
-
-function printNodes(head: ListNode | null) {
-    let current = head;
-    let nodes = [];
-
-    while (current) {
-        nodes.push(current.val);
-        current = current.next;
-    }
-
-    console.log(`Nodes: ${nodes}`);
 }
 
 test();
