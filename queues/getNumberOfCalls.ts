@@ -32,7 +32,7 @@ Each test case will call ping with strictly increasing values of t.
 At most 104 calls will be made to ping.
 */
 
-import { LinkedListQueue, MapPointerQueue } from "./core/queue";
+import { LinkedListQueue, MapPointerQueue } from "./core/Queue";
 
 /*
  * Your RecentCounter object will be instantiated and called as such:
