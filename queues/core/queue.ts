@@ -117,10 +117,14 @@ export class MapPointerQueue<T> implements Queue<T> {
     }
 }
 
-export const QueueImplementations = {
+export const QUEUE_IMPLEMENTATIONS = {
     'MapPointerQueue': MapPointerQueue,
     'LinkedListQueue': LinkedListQueue
-};
+} as const;
+
+export type QueueImplementation = keyof typeof QUEUE_IMPLEMENTATIONS;
+
+export const QUEUE_IMPLEMENTATION_NAMES: QueueImplementation[] = Object.keys(QUEUE_IMPLEMENTATIONS) as QueueImplementation[];
 
 class QueueNode<T> {
     public next: QueueNode<T> | null;

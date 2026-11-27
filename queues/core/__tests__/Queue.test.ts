@@ -1,11 +1,15 @@
-import { QueueImplementations } from "../Queue";
+import {
+    QueueImplementation,
+    QUEUE_IMPLEMENTATIONS,
+    QUEUE_IMPLEMENTATION_NAMES
+} from "../Queue";
 import { describe, it, expect} from "@jest/globals";
 
 const executeQueueTests = (
-    queueClassName: keyof typeof QueueImplementations,
+    queueClassName: QueueImplementation,
     testSeedElements: any[] = [12, 214, 1234, 12, 84, 89291, 1]
 ) => {
-    let queue = new QueueImplementations[queueClassName]<number>();
+    let queue = new QUEUE_IMPLEMENTATIONS[queueClassName]<number>();
     let queueCount = 0;
     expect(queue.size).toBe(queueCount);
     expect(queue.isEmpty).toBe(true);
@@ -42,9 +46,7 @@ const executeQueueTests = (
 describe(
     "Queue",
     () => {
-        const queueClassNames = Object.keys(QueueImplementations) as Array<keyof typeof QueueImplementations>;
-        
-        for (let className of queueClassNames) {
+        for (let className of QUEUE_IMPLEMENTATION_NAMES) {
             describe(
                 className,
                 () => {
