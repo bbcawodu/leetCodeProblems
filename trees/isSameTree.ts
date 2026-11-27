@@ -21,7 +21,7 @@ Example 3:
 Input: p = [1,2,1], q = [1,1,2]
 Output: false
  */
-import { TreeNode } from "./core/tree.ts";
+import { TreeNode } from "./core/TreeNode";
 
 export const isSameTree = (p: TreeNode | null, q: TreeNode | null): boolean => {
     if (p === null && q === null) {

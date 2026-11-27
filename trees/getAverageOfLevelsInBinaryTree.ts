@@ -21,7 +21,7 @@ Constraints:
 The number of nodes in the tree is in the range [1, 104].
 -231 <= Node.val <= 231 - 1
  */
-import { TreeNode } from "./core/tree.ts";
+import { TreeNode } from "./core/TreeNode";
 
 export const getAverageOfLevelsInBinaryTree = (root: TreeNode | null): number[] => {
     if (!root) {

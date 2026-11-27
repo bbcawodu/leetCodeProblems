@@ -34,7 +34,7 @@ The number of nodes in the tree is in the range [0, 5000].
 -1000 <= targetSum <= 1000
 */
 
-import { TreeNode } from "./core/tree.ts";
+import { TreeNode } from "./core/TreeNode";
 
 export const hasPathSum = (root: TreeNode | null, targetSum: number): boolean => {
     return hasPathSumDFSIterative(root, targetSum);

@@ -23,7 +23,7 @@ The number of nodes in the tree is in the range [1, 1000].
 
 Follow up: Could you solve it both recursively and iteratively?
 */
-import { TreeNode } from "./core/tree.ts";
+import { TreeNode } from "./core/TreeNode";
 
 export const isSymmetric = (root: TreeNode | null): boolean => {
     if (!root) {

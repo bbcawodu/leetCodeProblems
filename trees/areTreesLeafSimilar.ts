@@ -23,7 +23,7 @@ Input: root1 = [1,2,3], root2 = [1,3,2]
 Output: false 
 */
 
-import { TreeNode } from "./core/tree.ts";
+import { TreeNode } from "./core/TreeNode";
 
 export const areTreesLeafSimilar = (root1: TreeNode | null, root2: TreeNode | null): boolean => {
     let leaves1: TreeNode[] = [];

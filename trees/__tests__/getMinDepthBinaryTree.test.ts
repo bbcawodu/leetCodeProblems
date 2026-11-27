@@ -1,4 +1,4 @@
-import { TreeNode, printTree } from "../core/tree";
+import { TreeNode, printTree } from "../core/TreeNode";
 import { describe, it, expect } from "@jest/globals";
 import { getMinDepth } from "../getMinDepthBinaryTree";
 
